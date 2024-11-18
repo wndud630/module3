@@ -34,8 +34,8 @@
       
       // 이미지 파일들
       const images = [];
-      for (let i = 40001; i <= 40100; i++) {
-        images.push(`https://raw.githubusercontent.com/wndud630/module4/main/${i}.jpg`);
+      for (let i = 30001; i <= 30100; i++) {
+        images.push(`https://raw.githubusercontent.com/wndud630/module3/main/${i}.jpg`);
       }
 
       let currentIndex = Math.floor(images.length / 2); // 중간 이미지부터 시작
@@ -90,6 +90,10 @@ img.onload = () => {
           const numImages = imgElements.length;
           const step = Math.round((dx / canvas.width) * numImages * rotationFactor);
           currentIndex = (currentIndex + step + numImages) % numImages;
+
+          // 이미지가 순환되지 않도록 제한
+          currentIndex = Math.min(Math.max(currentIndex + step, 0), numImages - 1);
+          
           drawImage();
           startX = e.clientX;
         }
